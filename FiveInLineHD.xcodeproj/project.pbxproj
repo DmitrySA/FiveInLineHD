@@ -7,10 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		188956B91187027D00BDD60C /* FiveInLineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 188956B41187027D00BDD60C /* FiveInLineViewController.m */; };
-		188956BA1187027D00BDD60C /* FLCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 188956B61187027D00BDD60C /* FLCell.m */; };
-		188956BB1187027D00BDD60C /* FLItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 188956B81187027D00BDD60C /* FLItem.m */; };
 		188956C9118702A300BDD60C /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 188956C8118702A300BDD60C /* QuartzCore.framework */; };
+		1895E607118AF76300FC509D /* FiveInLineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1895E602118AF76300FC509D /* FiveInLineViewController.m */; };
+		1895E608118AF76300FC509D /* FLCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1895E604118AF76300FC509D /* FLCell.m */; };
+		1895E609118AF76300FC509D /* FLItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 1895E606118AF76300FC509D /* FLItem.m */; };
 		18A9823D1188663000C524B4 /* itemLight.png in Resources */ = {isa = PBXBuildFile; fileRef = 18A9823C1188663000C524B4 /* itemLight.png */; };
 		18A982501188680200C524B4 /* itemMask.png in Resources */ = {isa = PBXBuildFile; fileRef = 18A9824F1188680200C524B4 /* itemMask.png */; };
 		18A9825611886BDA00C524B4 /* hdbg.png in Resources */ = {isa = PBXBuildFile; fileRef = 18A9825511886BDA00C524B4 /* hdbg.png */; };
@@ -25,13 +25,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		188956B31187027D00BDD60C /* FiveInLineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FiveInLineViewController.h; path = ../FiveInLine/Classes/FiveInLineViewController.h; sourceTree = SOURCE_ROOT; };
-		188956B41187027D00BDD60C /* FiveInLineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FiveInLineViewController.m; path = ../FiveInLine/Classes/FiveInLineViewController.m; sourceTree = SOURCE_ROOT; };
-		188956B51187027D00BDD60C /* FLCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FLCell.h; path = ../FiveInLine/Classes/FLCell.h; sourceTree = SOURCE_ROOT; };
-		188956B61187027D00BDD60C /* FLCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FLCell.m; path = ../FiveInLine/Classes/FLCell.m; sourceTree = SOURCE_ROOT; };
-		188956B71187027D00BDD60C /* FLItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FLItem.h; path = ../FiveInLine/Classes/FLItem.h; sourceTree = SOURCE_ROOT; };
-		188956B81187027D00BDD60C /* FLItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FLItem.m; path = ../FiveInLine/Classes/FLItem.m; sourceTree = SOURCE_ROOT; };
 		188956C8118702A300BDD60C /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		1895E601118AF76300FC509D /* FiveInLineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FiveInLineViewController.h; path = Classes/FiveInLineViewController.h; sourceTree = "<group>"; };
+		1895E602118AF76300FC509D /* FiveInLineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FiveInLineViewController.m; path = Classes/FiveInLineViewController.m; sourceTree = "<group>"; };
+		1895E603118AF76300FC509D /* FLCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FLCell.h; path = Classes/FLCell.h; sourceTree = "<group>"; };
+		1895E604118AF76300FC509D /* FLCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FLCell.m; path = Classes/FLCell.m; sourceTree = "<group>"; };
+		1895E605118AF76300FC509D /* FLItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FLItem.h; path = Classes/FLItem.h; sourceTree = "<group>"; };
+		1895E606118AF76300FC509D /* FLItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FLItem.m; path = Classes/FLItem.m; sourceTree = "<group>"; };
 		18A9823C1188663000C524B4 /* itemLight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = itemLight.png; sourceTree = "<group>"; };
 		18A9824F1188680200C524B4 /* itemMask.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = itemMask.png; sourceTree = "<group>"; };
 		18A9825511886BDA00C524B4 /* hdbg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hdbg.png; sourceTree = "<group>"; };
@@ -79,12 +79,12 @@
 		188956BC1187028100BDD60C /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				188956B31187027D00BDD60C /* FiveInLineViewController.h */,
-				188956B41187027D00BDD60C /* FiveInLineViewController.m */,
-				188956B51187027D00BDD60C /* FLCell.h */,
-				188956B61187027D00BDD60C /* FLCell.m */,
-				188956B71187027D00BDD60C /* FLItem.h */,
-				188956B81187027D00BDD60C /* FLItem.m */,
+				1895E601118AF76300FC509D /* FiveInLineViewController.h */,
+				1895E602118AF76300FC509D /* FiveInLineViewController.m */,
+				1895E603118AF76300FC509D /* FLCell.h */,
+				1895E604118AF76300FC509D /* FLCell.m */,
+				1895E605118AF76300FC509D /* FLItem.h */,
+				1895E606118AF76300FC509D /* FLItem.m */,
 			);
 			name = Common;
 			sourceTree = "<group>";
@@ -203,9 +203,9 @@
 				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
 				1D3623260D0F684500981E51 /* FiveInLineHDAppDelegate.m in Sources */,
 				28D7ACF80DDB3853001CB0EB /* FiveInLineHDViewController.m in Sources */,
-				188956B91187027D00BDD60C /* FiveInLineViewController.m in Sources */,
-				188956BA1187027D00BDD60C /* FLCell.m in Sources */,
-				188956BB1187027D00BDD60C /* FLItem.m in Sources */,
+				1895E607118AF76300FC509D /* FiveInLineViewController.m in Sources */,
+				1895E608118AF76300FC509D /* FLCell.m in Sources */,
+				1895E609118AF76300FC509D /* FLItem.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
