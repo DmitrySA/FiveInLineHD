@@ -8,6 +8,7 @@
 
 #import "FiveInLineHDAppDelegate.h"
 #import "FiveInLineHDViewController.h"
+#include "SoundEngine.h"
 
 @implementation FiveInLineHDAppDelegate
 
@@ -20,11 +21,15 @@
     // Override point for customization after app launch    
     [window addSubview:viewController.view];
     [window makeKeyAndVisible];
+	
 
 	return YES;
 }
 
-
+- (void)applicationWillTerminate:(UIApplication *)application
+{
+	[viewController saveGame];
+}
 - (void)dealloc {
     [viewController release];
     [window release];

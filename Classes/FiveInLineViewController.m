@@ -9,6 +9,7 @@
 #import "FiveInLineViewController.h"
 #import "FLItem.h"
 #import "FLCell.h"
+#include "SoundEngine.h"
 
 @implementation FiveInLineViewController
 
@@ -43,6 +44,9 @@
 
 - (void)dealloc 
 {
+	
+	SoundEngine_Teardown();
+	
 	for (NSUInteger row = 0; row < kRowCount; ++ row) {
 		for (NSUInteger col = 0; col < kColCount; ++col) {
 			[cells[row][col] release];
@@ -293,7 +297,12 @@
 	{
 #if(TARGET_IPHONE_SIMULATOR)		
 		NSLog(@"cnt=%d row=%d col=%d",cnt,row,col);
-#endif		
+#endif	
+		
+		SoundEngine_SetListenerPosition(0, 0, 1.0f);
+		SoundEngine_SetEffectPosition(fadeOutSoundId,0, 0, 0.0f);
+		SoundEngine_StartEffect(fadeOutSoundId);
+		
 		score += kScoreInc * cnt;
 		for(NSUInteger i = 0; i < cnt; ++i)
 		{
@@ -356,6 +365,11 @@
 #if(TARGET_IPHONE_SIMULATOR)		
 		NSLog(@"cnt=%d row=%d col=%d",cnt,row,col);
 #endif		
+		
+		SoundEngine_SetListenerPosition(0, 0, 1.0f);
+		SoundEngine_SetEffectPosition(fadeOutSoundId,0, 0, 0.0f);
+		SoundEngine_StartEffect(fadeOutSoundId);
+		
 		score += kScoreInc * cnt;
 		for(NSUInteger i = 0; i < cnt; ++i)
 		{
@@ -509,10 +523,28 @@
 	}
 	else if([animationID isEqualToString:@"moveDown"])
 	{
+		
 		[self cleanupFieldCols];
 		[self cleanupFieldRows];
 		[self updateScoreBoard];		
 	}
+	else if([animationID isEqualToString:@"moveDownNext"])
+	{
+		SoundEngine_SetListenerPosition(0, 0, 1.0f);
+		SoundEngine_SetEffectPosition(boxDropSoundId,0, 0, 0.0f);
+		SoundEngine_StartEffect(boxDropSoundId);
+	}
+}
+
+-(void) loadSounds
+{
+	NSBundle*				bundle = [NSBundle mainBundle];	
+
+	SoundEngine_Initialize(44100);	
+
+	SoundEngine_LoadEffect([[bundle pathForResource:@"boxDrop" ofType:@"caf"] UTF8String], &boxDropSoundId);
+	SoundEngine_LoadEffect([[bundle pathForResource:@"fadeOut" ofType:@"caf"] UTF8String], &fadeOutSoundId);
+	
 }
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
@@ -523,6 +555,7 @@
 	isGameOver = NO;
 	isUseGravity = YES;
 	
+	[self loadSounds];
 	[self configureCells];
 	
 	[self setupCells];

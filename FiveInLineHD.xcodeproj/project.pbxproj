@@ -22,6 +22,11 @@
 		2899E5220DE3E06400AC0155 /* FiveInLineHDViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2899E5210DE3E06400AC0155 /* FiveInLineHDViewController.xib */; };
 		28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD733E0D9D9553002E5188 /* MainWindow.xib */; };
 		28D7ACF80DDB3853001CB0EB /* FiveInLineHDViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28D7ACF70DDB3853001CB0EB /* FiveInLineHDViewController.m */; };
+		5F7FCB25118B41940095F5A3 /* SoundEngine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5F7FCB23118B41940095F5A3 /* SoundEngine.cpp */; };
+		5F7FCB35118B41C40095F5A3 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F7FCB34118B41C40095F5A3 /* AudioToolbox.framework */; };
+		5F7FCB76118B42E30095F5A3 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F7FCB75118B42E30095F5A3 /* OpenAL.framework */; };
+		5F7FCB8D118B43860095F5A3 /* boxDrop.caf in Resources */ = {isa = PBXBuildFile; fileRef = 5F7FCB8B118B43860095F5A3 /* boxDrop.caf */; };
+		5F7FCB8E118B43860095F5A3 /* fadeOut.caf in Resources */ = {isa = PBXBuildFile; fileRef = 5F7FCB8C118B43860095F5A3 /* fadeOut.caf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -47,6 +52,12 @@
 		28D7ACF70DDB3853001CB0EB /* FiveInLineHDViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FiveInLineHDViewController.m; sourceTree = "<group>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* FiveInLineHD_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FiveInLineHD_Prefix.pch; sourceTree = "<group>"; };
+		5F7FCB23118B41940095F5A3 /* SoundEngine.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SoundEngine.cpp; sourceTree = "<group>"; };
+		5F7FCB24118B41940095F5A3 /* SoundEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoundEngine.h; sourceTree = "<group>"; };
+		5F7FCB34118B41C40095F5A3 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		5F7FCB75118B42E30095F5A3 /* OpenAL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenAL.framework; path = System/Library/Frameworks/OpenAL.framework; sourceTree = SDKROOT; };
+		5F7FCB8B118B43860095F5A3 /* boxDrop.caf */ = {isa = PBXFileReference; lastKnownFileType = file; name = boxDrop.caf; path = Sounds/boxDrop.caf; sourceTree = "<group>"; };
+		5F7FCB8C118B43860095F5A3 /* fadeOut.caf */ = {isa = PBXFileReference; lastKnownFileType = file; name = fadeOut.caf; path = Sounds/fadeOut.caf; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* FiveInLineHD-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "FiveInLineHD-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -59,6 +70,8 @@
 				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
 				288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */,
 				188956C9118702A300BDD60C /* QuartzCore.framework in Frameworks */,
+				5F7FCB35118B41C40095F5A3 /* AudioToolbox.framework in Frameworks */,
+				5F7FCB76118B42E30095F5A3 /* OpenAL.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -100,6 +113,7 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				5F7FCB22118B41940095F5A3 /* AudioSupport */,
 				188956BC1187028100BDD60C /* Common */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
@@ -122,6 +136,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				5F7FCB7B118B437E0095F5A3 /* Sounds */,
 				18A9825511886BDA00C524B4 /* hdbg.png */,
 				18A9824F1188680200C524B4 /* itemMask.png */,
 				18A9823C1188663000C524B4 /* itemLight.png */,
@@ -139,8 +154,29 @@
 				1D30AB110D05D00D00671497 /* Foundation.framework */,
 				288765A40DF7441C002DB57D /* CoreGraphics.framework */,
 				188956C8118702A300BDD60C /* QuartzCore.framework */,
+				5F7FCB34118B41C40095F5A3 /* AudioToolbox.framework */,
+				5F7FCB75118B42E30095F5A3 /* OpenAL.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		5F7FCB22118B41940095F5A3 /* AudioSupport */ = {
+			isa = PBXGroup;
+			children = (
+				5F7FCB23118B41940095F5A3 /* SoundEngine.cpp */,
+				5F7FCB24118B41940095F5A3 /* SoundEngine.h */,
+			);
+			name = AudioSupport;
+			path = Classes/AudioSupport;
+			sourceTree = "<group>";
+		};
+		5F7FCB7B118B437E0095F5A3 /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				5F7FCB8B118B43860095F5A3 /* boxDrop.caf */,
+				5F7FCB8C118B43860095F5A3 /* fadeOut.caf */,
+			);
+			name = Sounds;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -190,6 +226,8 @@
 				18A9823D1188663000C524B4 /* itemLight.png in Resources */,
 				18A982501188680200C524B4 /* itemMask.png in Resources */,
 				18A9825611886BDA00C524B4 /* hdbg.png in Resources */,
+				5F7FCB8D118B43860095F5A3 /* boxDrop.caf in Resources */,
+				5F7FCB8E118B43860095F5A3 /* fadeOut.caf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -206,6 +244,7 @@
 				1895E607118AF76300FC509D /* FiveInLineViewController.m in Sources */,
 				1895E608118AF76300FC509D /* FLCell.m in Sources */,
 				1895E609118AF76300FC509D /* FLItem.m in Sources */,
+				5F7FCB25118B41940095F5A3 /* SoundEngine.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
