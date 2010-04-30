@@ -166,7 +166,7 @@
 
 	for (NSUInteger row = 0; row < kRowCount; ++ row) {
 		for (NSUInteger col = 0; col < kColCount; ++col) {
-			FLCell* cell = [[FLCell alloc] initWithFrame:CGRectMake(cellsOffsetX + col * cellWidth, cellsOffsetY + row * cellHeight, cellWidth, cellHeight)];
+			FLCell* cell = [[FLCell alloc] initWithFrame:CGRectMake(cellsOffsetX + col * (cellWidth+1), cellsOffsetY + row * cellHeight, cellWidth, cellHeight)];
 			cell.delegate = self;
 			cell.row = row;
 			cell.col = col;
@@ -567,6 +567,11 @@
 	}
 
 	
+}
+
+-(void) didCellTouchDown:(FLCell*)cell
+{
+		
 }
 
 // Override to allow orientations other than the default portrait orientation.

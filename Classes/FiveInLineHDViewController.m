@@ -34,11 +34,11 @@
 	kRowCount = 12;
 	kColCount = 12;
 	
-	cellWidth = 61;
-	cellHeight = 61;	
+	cellWidth = 60;
+	cellHeight = 60;	
 
-	cellsOffsetX = 15;
-	cellsOffsetY = 15;
+	cellsOffsetX = 25;
+	cellsOffsetY = 25;
 
 }
 

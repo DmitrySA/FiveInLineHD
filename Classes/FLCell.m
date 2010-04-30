@@ -20,8 +20,8 @@
 		frame.size.width --;
 		frame.size.height --;
 		self.frame = frame;
-		self.backgroundColor = [UIColor grayColor];
-		self.opaque = YES;
+		self.backgroundColor = [UIColor clearColor];
+		self.opaque = NO;
     }
     return self;
 }
@@ -100,6 +100,8 @@
 
 - (void) touchesBegan: (NSSet*)touches withEvent:(UIEvent*)event 
 {
+	if(delegate)
+		[delegate didCellTouchDown:self];
 }
 - (void) touchesEnded: (NSSet*)touches withEvent:(UIEvent*)event 
 {	

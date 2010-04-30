@@ -13,6 +13,7 @@
 @protocol FLCellDelegate
 
 -(void) didSelectCell:(FLCell*)cell;
+-(void) didCellTouchDown:(FLCell*)cell;
 
 @end
 
