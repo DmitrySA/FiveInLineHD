@@ -216,6 +216,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -223,6 +224,7 @@
 				GCC_PREFIX_HEADER = FiveInLineHD_Prefix.pch;
 				INFOPLIST_FILE = "FiveInLineHD-Info.plist";
 				PRODUCT_NAME = FiveInLineHD;
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
