@@ -32,11 +32,14 @@
 	CGFloat cellWidth;
 	CGFloat cellHeight;
 	
-	IBOutlet UILabel* scoreLabel;
-	IBOutlet UILabel* bestLabel;
-	
 	UInt32			boxDropSoundId;
 	UInt32			fadeOutSoundId;
+	
+	UIView* scoreViewContainer;
+	UIView* bestScoreViewContainer;
+	
+	
+	UIImage* numbers[10];
 
 }
 

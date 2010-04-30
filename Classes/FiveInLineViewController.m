@@ -53,6 +53,9 @@
 		}
 	}
 	
+	[scoreViewContainer release];
+	[bestScoreViewContainer release];
+	
     [super dealloc];
 }
 
@@ -208,6 +211,15 @@
 	for(NSUInteger i=0; i<3; ++i)
 	{
 		currentColors[i] = colors[random() % 7];
+	}
+}
+
+-(void) setupNumberImages
+{
+	
+	for(NSUInteger i = 0; i < 10; ++i)
+	{
+		numbers[i] = [UIImage imageNamed:[NSString stringWithFormat:@"%d.png",i]];
 	}
 }
 
@@ -488,7 +500,34 @@
 	 
 	bestScore = [ud integerForKey:@"best"];
 	
-	scoreLabel.text = [NSString stringWithFormat:@"%d",score];
+	//scoreLabel.text = [NSString stringWithFormat:@"%d",score];
+	
+	if(scoreViewContainer)
+	{
+		[scoreViewContainer removeFromSuperview];
+	}
+	
+	scoreViewContainer = [[UIView alloc] initWithFrame:CGRectMake(810,125,200,28)];	
+	[self.view addSubview:scoreViewContainer];
+	scoreViewContainer.transform = CGAffineTransformMakeRotation(-M_PI/180*10);
+	
+	NSString* scoreStr = [NSString stringWithFormat:@"%d",score];
+	
+	for(NSUInteger pos = 0; pos < [scoreStr length]; pos++)
+	{
+		NSRange r = NSMakeRange(pos,1);
+		NSString* pc = [scoreStr substringWithRange:r];
+		NSUInteger index = [pc integerValue];
+		
+		UIImage* numImage = numbers[index];
+		
+		UIImageView* theView = [[UIImageView alloc] initWithFrame:CGRectMake(pos*20, 1, 20, 26)];
+		theView.image = numImage;
+		[scoreViewContainer addSubview:theView];
+		[theView release];
+	}
+	
+	[scoreViewContainer release];
 	
 	if(score > bestScore)
 	{
@@ -497,7 +536,36 @@
 		[ud synchronize];
 	}
 	
-	bestLabel.text = [NSString stringWithFormat:@"%d",bestScore];
+	
+	if(bestScoreViewContainer)
+	{
+		[bestScoreViewContainer removeFromSuperview];
+	}
+	
+	bestScoreViewContainer = [[UIView alloc] initWithFrame:CGRectMake(870,75,150,28)];	
+	[self.view addSubview:bestScoreViewContainer];
+	bestScoreViewContainer.transform = CGAffineTransformMakeRotation(-M_PI/180*10);
+	
+	NSString* bestScoreStr = [NSString stringWithFormat:@"%d",bestScore];
+	
+	for(NSUInteger pos = 0; pos < [bestScoreStr length]; pos++)
+	{
+		NSRange r = NSMakeRange(pos,1);
+		NSString* pc = [bestScoreStr substringWithRange:r];
+		NSUInteger index = [pc integerValue];
+		
+		UIImage* numImage = numbers[index];
+		
+		UIImageView* theView = [[UIImageView alloc] initWithFrame:CGRectMake(pos*20, 1, 20, 26)];
+		theView.image = numImage;
+		[bestScoreViewContainer addSubview:theView];
+		[theView release];
+	}
+	
+	[bestScoreViewContainer
+	 release];
+	
+	//bestLabel.text = [NSString stringWithFormat:@"%d",bestScore];
 	
 	
 }
@@ -541,6 +609,10 @@
 	NSBundle*				bundle = [NSBundle mainBundle];	
 
 	SoundEngine_Initialize(44100);	
+	
+	
+	SoundEngine_LoadBackgroundMusicTrack([[bundle pathForResource:@"hopemeon1" ofType:@"mp3"] UTF8String], true, true);
+	SoundEngine_StartBackgroundMusic();
 
 	SoundEngine_LoadEffect([[bundle pathForResource:@"boxDrop" ofType:@"caf"] UTF8String], &boxDropSoundId);
 	SoundEngine_LoadEffect([[bundle pathForResource:@"fadeOut" ofType:@"caf"] UTF8String], &fadeOutSoundId);
@@ -555,6 +627,7 @@
 	isGameOver = NO;
 	isUseGravity = YES;
 	
+	[self setupNumberImages];
 	[self loadSounds];
 	[self configureCells];
 	

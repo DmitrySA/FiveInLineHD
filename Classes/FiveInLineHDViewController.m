@@ -45,7 +45,7 @@
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad 
 {
-	self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"hdbg.png"]];
+//	self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"hdbg.png"]];
 	[super viewDidLoad];
 	
 }
