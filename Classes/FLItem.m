@@ -12,7 +12,7 @@
 
 @implementation FLItem
 
-@synthesize selected;
+@synthesize selected, image, bgColor;
 
 - (id)initWithFrame:(CGRect)frame {
     if ((self = [super initWithFrame:frame])) {
@@ -23,69 +23,51 @@
 		frame.size.width-=2;
 		frame.size.height-=2;
 		self.frame = frame;
-		self.opaque = YES;
+		self.backgroundColor =  [UIColor clearColor];
+		self.opaque = NO;
 						
     }
     return self;
 }
 
-static UIImage* maskImage1 = nil;
 static UIImage* maskImage2 = nil;
 
--(UIImage*) createImageFromColor:(UIColor*)color
+-(void) createImageFromColor:(UIColor*)color
 {
-	CGRect frame = self.frame;
+
+	UIGraphicsBeginImageContext(self.frame.size);
+	CGContextSetFillColorWithColor(UIGraphicsGetCurrentContext(), color.CGColor);
+	CGContextFillRect(UIGraphicsGetCurrentContext(), CGRectMake(5, 5, self.frame.size.width - 10, self.frame.size.height - 10));
 	
-	UIView* container = [[UIView alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, frame.size.height)]; 
-	UIImageView* theView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, frame.size.height)];
-	theView.backgroundColor = color;
-	
-	{
-		if(!maskImage1)
-			maskImage1 = [UIImage imageNamed:@"itemMask.png"];
 		
-		CALayer* maskLayer = [CALayer layer];
-		maskLayer.position = CGPointMake(frame.size.width/2, frame.size.height/2);
-		maskLayer.bounds = CGRectMake(0, 0, frame.size.width, frame.size.height);
-		[maskLayer setContents:(id)maskImage1.CGImage];
-		self.layer.mask = maskLayer;			
-	}
+	if(!maskImage2)
+		maskImage2 = [UIImage imageNamed:@"itemLight.png"];		
+
+	[maskImage2 drawInRect:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
 	
-	{
-		
-		if(!maskImage2)
-			maskImage2 = [UIImage imageNamed:@"itemLight.png"];		
-		theView.image = maskImage2;			
-	}
-	
-	[container addSubview:theView];
-	
-	UIGraphicsBeginImageContext(self.bounds.size);
-	[container.layer renderInContext:UIGraphicsGetCurrentContext()];
-	UIImage *viewImage = UIGraphicsGetImageFromCurrentImageContext();
+	self.image = UIGraphicsGetImageFromCurrentImageContext();
 	UIGraphicsEndImageContext();
-	
-	[theView release];
-	[container release];
-	
-	return viewImage;
 	
 }
 #define USE_MASK_IMAGE
 #ifdef USE_MASK_IMAGE
--(void) setBackgroundColor:(UIColor *)val
+-(void) setBgColor:(UIColor *)val
 {
-	self.image = [self createImageFromColor:val];
-	[super setBackgroundColor:val];
+	[self createImageFromColor:val];
+	[val retain];
+	[bgColor release];
+	bgColor = val;
+	
 }
 #endif
-/*
+
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.
 - (void)drawRect:(CGRect)rect {
     // Drawing code
+	[image drawInRect:rect];
 }
-*/
+
 
 -(void)animationDidStop:(NSString *)animationID finished:(NSNumber *)finished context:(void *)context
 {
@@ -136,6 +118,8 @@ static UIImage* maskImage2 = nil;
 
 - (void)dealloc 
 {
+	[bgColor release];
+	[image release];
     [super dealloc];
 }
 

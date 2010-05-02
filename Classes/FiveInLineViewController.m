@@ -77,7 +77,7 @@
 			FLItem* item = cell.item;
 			
 			for (NSUInteger i=0; i<8; ++i) {
-				if(CGColorEqualToColor(item.backgroundColor.CGColor, colors[i].CGColor))
+				if(CGColorEqualToColor(item.bgColor.CGColor, colors[i].CGColor))
 				{
 					[a addObject:[NSNumber numberWithInt:i]];
 					break;
@@ -347,10 +347,10 @@
 			
 			if(!itemColor)
 			{
-				itemColor = item.backgroundColor; //init color here
+				itemColor = item.bgColor; //init color here
 				cnt = 1;
 			} 
-			else if(CGColorEqualToColor(itemColor.CGColor, item.backgroundColor.CGColor))
+			else if(CGColorEqualToColor(itemColor.CGColor, item.bgColor.CGColor))
 			{
 				if(col)
 					cnt++;
@@ -361,7 +361,7 @@
 				cnt = 1;
 			}
 				
-			itemColor = item.backgroundColor;
+			itemColor = item.bgColor;
 
 		} // for
 		
@@ -461,10 +461,10 @@
 			
 			if(!itemColor)
 			{
-				itemColor = item.backgroundColor; //init color here
+				itemColor = item.bgColor; //init color here
 				cnt =1;
 			} 
-			else if(CGColorEqualToColor(itemColor.CGColor, item.backgroundColor.CGColor))
+			else if(CGColorEqualToColor(itemColor.CGColor, item.bgColor.CGColor))
 			{
 				if(row)
 					cnt++;
@@ -475,7 +475,7 @@
 				cnt = 1;
 			}
 			
-			itemColor = item.backgroundColor;
+			itemColor = item.bgColor;
 			
 		} // for
 		

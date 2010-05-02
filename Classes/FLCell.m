@@ -55,7 +55,7 @@
 	self.item = _item;	
 	[_item release];
 	
-	item.backgroundColor = color;
+	item.bgColor = color;
 	[self addSubview:item];
 	
 	return YES;
