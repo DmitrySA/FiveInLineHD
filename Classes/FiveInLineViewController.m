@@ -300,6 +300,9 @@
 			itemCnt--;
 		
 	}
+		
+	if(![self haveFreeCells])
+		[self gameOver];
 			
 }
 
@@ -310,6 +313,8 @@
 #if(TARGET_IPHONE_SIMULATOR)		
 		NSLog(@"cnt=%d row=%d col=%d",cnt,row,col);
 #endif	
+		
+		isClearedInStep = YES;
 		
 		SoundEngine_SetListenerPosition(0, 0, 1.0f);
 		SoundEngine_SetEffectPosition(fadeOutSoundId,0, 0, 0.0f);
@@ -370,6 +375,20 @@
 	} // for
 }
 
+-(void) allItemsDown
+{
+#if(TARGET_IPHONE_SIMULATOR)		
+	NSLog(@"allItemsDown");
+#endif		
+	if(!isClearedInStep)
+	{
+		[self addNextItems];
+	}
+	
+	isClearedInStep = NO;
+	isDroppingDown = NO;			
+}
+
 -(void) clearBackRowsFromRow:(NSUInteger)row col:(NSUInteger)col count:(NSUInteger)cnt
 {
 	if(cnt >= 5)
@@ -388,6 +407,8 @@
 			[cells[row-i][col] removeItem];
 		}
 		
+		isClearedInStep = YES;
+		
 	}	
 	else if((cnt>2) && isUseGravity && (row < kRowCount-1))
 	{
@@ -395,19 +416,34 @@
 		NSUInteger nextRow = row;
 		
 		FLCell* nextCell = nil;
-		
+		isDroppingDown = YES;
 
 		while (1) 
 		{
 			nextRow++;
 			
 			if(nextRow == kRowCount)
+			{
+				if(nextRow == row+1)
+					break;
+					
+				[self performSelector:@selector(allItemsDown) withObject:nil afterDelay:0.2*cnt];
+
 				break;
+			}
 
 			nextCell = cells[nextRow][col];
 				
 			if([nextCell haveItem])
+			{
+				
+				if(nextRow == row+1)
+					break;
+
+				[self performSelector:@selector(allItemsDown) withObject:nil afterDelay:0.2*cnt];
+
 				break;
+			}
 			
 			
 			// move items down
@@ -431,8 +467,8 @@
 				[UIView commitAnimations];
 			}			
 						
-		}
-		
+		} //while
+	
 		
 	}
 }
@@ -440,7 +476,6 @@
 -(void) cleanupFieldRows
 {
 	NSUInteger cnt = 1;
-	
 	UIColor* itemColor = nil;
 	
 	// check for cols
@@ -482,6 +517,7 @@
 		[self clearBackRowsFromRow:kRowCount-1 col:col count:cnt];
 		
 	} // for
+	
 }
 
 -(void) gameOver
@@ -576,10 +612,17 @@
 	{
 		if([self haveFreeCells])			
 		{
-			[self addNextItems];
 			[self clearAllSelections];	
 			[self cleanupFieldCols];
 			[self cleanupFieldRows];
+			
+			if(!isClearedInStep && !isDroppingDown)
+			{
+				[self addNextItems];
+			}
+
+			isClearedInStep = NO;
+			
 			[self updateScoreBoard];
 		}
 		else 
@@ -591,9 +634,9 @@
 	}
 	else if([animationID isEqualToString:@"moveDown"])
 	{
-		
 		[self cleanupFieldCols];
 		[self cleanupFieldRows];
+
 		[self updateScoreBoard];		
 	}
 	else if([animationID isEqualToString:@"moveDownNext"])
@@ -606,7 +649,7 @@
 
 -(void) loadSounds
 {
-	NSBundle*				bundle = [NSBundle mainBundle];	
+	NSBundle*	bundle = [NSBundle mainBundle];	
 
 	SoundEngine_Initialize(44100);	
 	

@@ -38,6 +38,8 @@
 	UIView* scoreViewContainer;
 	UIView* bestScoreViewContainer;
 	
+	BOOL isClearedInStep;
+	BOOL isDroppingDown;
 	
 	UIImage* numbers[10];
 
@@ -54,6 +56,8 @@
 -(void) loadSavedGame;
 -(FLCell*) findFirstCell;
 -(void) updateScoreBoard;
+
+-(void) gameOver;
 
 -(IBAction) newGame;
 
