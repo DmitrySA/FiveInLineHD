@@ -416,7 +416,6 @@
 		NSUInteger nextRow = row;
 		
 		FLCell* nextCell = nil;
-		isDroppingDown = YES;
 
 		while (1) 
 		{
@@ -427,7 +426,7 @@
 				if(nextRow == row+1)
 					break;
 					
-				[self performSelector:@selector(allItemsDown) withObject:nil afterDelay:0.2*cnt];
+				[self performSelector:@selector(allItemsDown) withObject:nil afterDelay:0.3*cnt];
 
 				break;
 			}
@@ -440,11 +439,12 @@
 				if(nextRow == row+1)
 					break;
 
-				[self performSelector:@selector(allItemsDown) withObject:nil afterDelay:0.2*cnt];
+				[self performSelector:@selector(allItemsDown) withObject:nil afterDelay:0.3*cnt];
 
 				break;
 			}
 			
+			isDroppingDown = YES;
 			
 			// move items down
 			for(NSUInteger i = 0; i < cnt; ++i)
@@ -608,6 +608,9 @@
 
 -(void)animationDidStop:(NSString *)animationID finished:(NSNumber *)finished context:(void *)context
 {
+#if(TARGET_IPHONE_SIMULATOR)
+	NSLog(@"%@",animationID);
+#endif	
 	if([animationID isEqualToString:@"swapCells"])
 	{
 		if([self haveFreeCells])			
